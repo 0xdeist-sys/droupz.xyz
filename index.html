@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DROUPZ — Wrong Universe. Right Purpose.</title>
+  <meta name="description" content="DROUPZ — 1,000 sleepy misfits on Robinhood Chain. Stake your DROUPZ and claim ETH rewards anytime.">
+
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #06140e;
+      color: #f2fff8;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+    }
+    button { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(6,20,14,.88);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: .12em;
+      font-size: 20px;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      color: #a8b8b0;
+      font-size: 14px;
+    }
+
+    .navlinks a:hover { color: white; }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-weight: 800;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:disabled { cursor: not-allowed; opacity: .45; transform: none; }
+
+    .btn-primary {
+      background: #b8ff57;
+      color: #07120b;
+    }
+
+    .btn-dark {
+      background: #10251a;
+      color: #eafff1;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .hero {
+      min-height: 72vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 100px 0 80px;
+    }
+
+    .eyebrow {
+      color: #b8ff57;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 18px auto 18px;
+      max-width: 850px;
+      font-size: clamp(48px, 9vw, 96px);
+      line-height: .92;
+      letter-spacing: -.055em;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto 28px;
+      color: #a9b8b0;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    section { padding: 70px 0; }
+
+    .section-title {
+      margin-bottom: 28px;
+    }
+
+    .section-title h2 {
+      margin: 8px 0;
+      font-size: clamp(32px, 5vw, 54px);
+      letter-spacing: -.04em;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: #8fa198;
+      max-width: 650px;
+      line-height: 1.7;
+    }
+
+    .staking {
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .panel {
+      background: #0a1c13;
+      border: 1px solid rgba(184,255,87,.16);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.22);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .stat {
+      padding: 18px;
+      background: #07170f;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 16px;
+    }
+
+    .stat small {
+      display: block;
+      color: #7f9188;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 8px;
+    }
+
+    .stat strong { font-size: 20px; }
+
+    .wallet-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 22px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .wallet-address {
+      color: #a9b8b0;
+      font-size: 13px;
+      word-break: break-all;
+    }
+
+    .wallet-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nft-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .nft-card {
+      overflow: hidden;
+      border-radius: 16px;
+      background: #07170f;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nft-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      background: #0d2619;
+    }
+
+    .nft-body {
+      padding: 12px;
+    }
+
+    .nft-id {
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .nft-body .btn {
+      width: 100%;
+      padding: 9px 10px;
+      font-size: 12px;
+    }
+
+    .empty {
+      text-align: center;
+      color: #7f9188;
+      padding: 36px 12px;
+      border: 1px dashed rgba(255,255,255,.1);
+      border-radius: 16px;
+    }
+
+    .message {
+      margin-top: 16px;
+      padding: 13px 15px;
+      border-radius: 12px;
+      background: #07170f;
+      color: #9caf9f;
+      font-size: 13px;
+      display: none;
+    }
+
+    .message.show { display: block; }
+
+    .how {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .step {
+      padding: 24px;
+      border-radius: 18px;
+      background: #0a1c13;
+      border: 1px solid rgba(255,255,255,.07);
+    }
+
+    .step span {
+      color: #b8ff57;
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .14em;
+    }
+
+    .step h3 { margin: 14px 0 8px; }
+    .step p { color: #8fa198; line-height: 1.6; margin: 0; }
+
+    footer {
+      padding: 50px 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: #718179;
+      font-size: 13px;
+    }
+
+    @media (max-width: 850px) {
+      .navlinks { display: none; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .nft-grid { grid-template-columns: repeat(3, 1fr); }
+      .how { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      .wrap { width: min(100% - 24px, 1180px); }
+      .panel { padding: 18px; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .nft-grid { grid-template-columns: repeat(2, 1fr); }
+      .wallet-row { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#">DROUPZ</a>
+      <div class="navlinks">
+        <a href="#staking">Staking</a>
+        <a href="#how">How it works</a>
+        <a href="https://opensea.io/collection/droupz" target="_blank" rel="noopener">OpenSea</a>
+      </div>
+      <button id="connectBtn" class="btn btn-primary">CONNECT WALLET</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Robinhood Chain</div>
+      <h1>Wrong Universe.<br>Right Purpose.</h1>
+      <p>
+        1,000 sleepy misfits. Stake your DROUPZ, earn from creator fees,
+        and claim your ETH whenever you want.
+      </p>
+      <div class="hero-actions">
+        <button id="heroConnectBtn" class="btn btn-primary">STAKE YOUR DROUPZ</button>
+        <a class="btn btn-dark" href="#staking">VIEW REWARDS</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="staking" class="staking">
+    <div class="wrap">
+      <div class="section-title">
+        <div class="eyebrow">DROUPZ STAKING</div>
+        <h2>Stake. Earn. Claim.</h2>
+        <p>
+          No lock period. No weekly claim window. Stake whenever you want
+          and claim your available ETH whenever you want. Your DROUPZ stays in your wallet.
+        </p>
+      </div>
+
+      <div class="panel">
+        <div class="stats">
+          <div class="stat">
+            <small>Your Staked</small>
+            <strong id="stakedCount">0 DROUPZ</strong>
+          </div>
+          <div class="stat">
+            <small>Your Reward</small>
+            <strong id="rewardAmount">0 ETH</strong>
+          </div>
+          <div class="stat">
+            <small>Reward Shares</small>
+            <strong id="shareCount">0 / 20</strong>
+          </div>
+          <div class="stat">
+            <small>Total Staked</small>
+            <strong id="totalStaked">0</strong>
+          </div>
+        </div>
+
+        <div class="wallet-row">
+          <div>
+            <div class="eyebrow" style="margin-bottom:8px">WALLET</div>
+            <div id="walletAddress" class="wallet-address">Not connected</div>
+          </div>
+          <div class="wallet-actions">
+            <button id="claimBtn" class="btn btn-primary" disabled>CLAIM REWARDS</button>
+            <button id="refreshBtn" class="btn btn-dark">REFRESH</button>
+          </div>
+        </div>
+
+        <div id="nftGrid" class="nft-grid">
+          <div class="empty" style="grid-column:1/-1">
+            Connect your wallet to see your DROUPZ.
+          </div>
+        </div>
+
+        <div id="message" class="message"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="section-title">
+        <div class="eyebrow">HOW IT WORKS</div>
+        <h2>Your DROUPZ. Your rewards.</h2>
+      </div>
+
+      <div class="how">
+        <div class="step">
+          <span>01</span>
+          <h3>Connect</h3>
+          <p>Connect your wallet and the site finds the DROUPZ you own.</p>
+        </div>
+        <div class="step">
+          <span>02</span>
+          <h3>Stake</h3>
+          <p>Stake any DROUPZ. Your NFT stays in your wallet. One staked DROUPZ equals one reward share, capped at 20 shares per wallet.</p>
+        </div>
+        <div class="step">
+          <span>03</span>
+          <h3>Claim</h3>
+          <p>Creator-fee ETH is distributed to active reward shares. Claim whenever you want.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    DROUPZ — Wrong Universe. Right Purpose.
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
+<script>
+  // MAINNET CONFIGURATION
+  const CONFIG = {
+    chainId: 4663n,
+    chainName: "Robinhood Chain",
+    staking: "0x6f5aa37069A839e16Ee0750Cf4c341787657070A",
+    nft: "0xfd7a3fc37d607bc0364165dbb0d0741949c09167",
+    explorer: "https://robinhoodchain.blockscout.com",
+    rpc: "https://rpc.mainnet.chain.robinhood.com"
+  };
+
+  const NFT_ABI = [
+    "function balanceOf(address owner) view returns (uint256)",
+    "function ownerOf(uint256 tokenId) view returns (address)",
+    "function getApproved(uint256 tokenId) view returns (address)",
+    "function isApprovedForAll(address owner,address operator) view returns (bool)",
+    "function approve(address to,uint256 tokenId)",
+    "function tokenURI(uint256 tokenId) view returns (string)"
+  ];
+
+  const STAKING_ABI = [
+    "function stake(uint256[] tokenIds)",
+    "function unstake(uint256[] tokenIds)",
+    "function claim() returns (uint256)",
+    "function withdrawClaimable() returns (uint256)",
+    "function pendingRewards(address user) view returns (uint256)",
+    "function rewardSharesOf(address user) view returns (uint256)",
+    "function storedClaimable(address user) view returns (uint256)",
+    "function stakedTokensOf(address user) view returns (uint256[])",
+    "function totalStaked() view returns (uint256)"
+  ];
+
+  let provider = null;
+  let signer = null;
+  let userAddress = null;
+  let nft = null;
+  let staking = null;
+  let userTokens = [];
+  let stakedTokens = new Set();
+
+  const $ = id => document.getElementById(id);
+
+  function showMessage(text) {
+    const el = $("message");
+    el.textContent = text;
+    el.classList.add("show");
+  }
+
+  function hideMessage() {
+    $("message").classList.remove("show");
+  }
+
+  function shortAddress(address) {
+    return address.slice(0, 6) + "..." + address.slice(-4);
+  }
+
+  function formatEth(value) {
+    return Number(ethers.formatEther(value)).toFixed(12) + " ETH";
+  }
+
+  async function ensureNetwork() {
+    const network = await provider.getNetwork();
+    if (network.chainId === CONFIG.chainId) return true;
+
+    try {
+      await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: "0x1237" }]
+      });
+      return true;
+    } catch (err) {
+      if (err.code === 4902) {
+        await window.ethereum.request({
+          method: "wallet_addEthereumChain",
+          params: [{
+            chainId: "0x1237",
+            chainName: CONFIG.chainName,
+            nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 },
+            rpcUrls: [CONFIG.rpc],
+            blockExplorerUrls: [CONFIG.explorer]
+          }]
+        });
+        return true;
+      }
+      throw err;
+    }
+  }
+
+  async function connect() {
+    if (!window.ethereum) {
+      showMessage("MetaMask was not detected. Please install a compatible wallet.");
+      return;
+    }
+
+    hideMessage();
+
+    try {
+      provider = new ethers.BrowserProvider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
+      await ensureNetwork();
+
+      signer = await provider.getSigner();
+      userAddress = await signer.getAddress();
+
+      nft = new ethers.Contract(CONFIG.nft, NFT_ABI, signer);
+      staking = new ethers.Contract(CONFIG.staking, STAKING_ABI, signer);
+
+      $("walletAddress").textContent = userAddress;
+      $("connectBtn").textContent = shortAddress(userAddress);
+      $("heroConnectBtn").textContent = "WALLET CONNECTED";
+
+      await refresh();
+    } catch (err) {
+      console.error(err);
+      showMessage(readableError(err));
+    }
+  }
+
+  async function refresh() {
+    if (!staking || !userAddress) return;
+
+    hideMessage();
+
+    try {
+      const [reward, shares, total, staked] = await Promise.all([
+        staking.pendingRewards(userAddress),
+        staking.rewardSharesOf(userAddress),
+        staking.totalStaked(),
+        staking.stakedTokensOf(userAddress)
+      ]);
+
+      stakedTokens = new Set(staked.map(x => x.toString()));
+
+      $("stakedCount").textContent = staked.length + " DROUPZ";
+      $("rewardAmount").textContent = formatEth(reward);
+      $("shareCount").textContent = shares.toString() + " / 20";
+      $("totalStaked").textContent = total.toString();
+
+      $("claimBtn").disabled = reward === 0n;
+
+      await loadOwnedNFTs();
+    } catch (err) {
+      console.error(err);
+      showMessage(readableError(err));
+    }
+  }
+
+  // ERC-721 does not provide an enumeration function. For the first version
+  // we scan the 1,000-token DROUPZ supply. This is fine for a 1,000 PFP set.
+  async function loadOwnedNFTs() {
+    const cards = [];
+    const totalSupply = 1000;
+
+    // Batch RPC calls to avoid hammering the wallet/provider.
+    for (let start = 0; start < totalSupply; start += 50) {
+      const end = Math.min(start + 50, totalSupply);
+      const calls = [];
+
+      for (let tokenId = start; tokenId < end; tokenId++) {
+        calls.push(
+          nft.ownerOf(tokenId)
+            .then(owner => owner.toLowerCase() === userAddress.toLowerCase() ? tokenId : null)
+            .catch(() => null)
+        );
+      }
+
+      const results = await Promise.all(calls);
+      for (const tokenId of results) {
+        if (tokenId !== null) cards.push(tokenId);
+      }
+    }
+
+    // Include both wallet-owned NFTs and currently staked NFTs.
+    // A staked NFT is held by the staking contract, so ownerOf() alone
+    // would otherwise hide it from the UI.
+    const stakedIds = Array.from(stakedTokens).map(x => Number(x));
+    userTokens = [...new Set([...cards, ...stakedIds])].sort((a, b) => a - b);
+    renderNFTs();
+  }
+
+  function renderNFTs() {
+    const grid = $("nftGrid");
+
+    if (!userTokens.length) {
+      grid.innerHTML = `
+        <div class="empty" style="grid-column:1/-1">
+          No DROUPZ found in this wallet.
+        </div>`;
+      return;
+    }
+
+    grid.innerHTML = userTokens.map(tokenId => {
+      const isStaked = stakedTokens.has(String(tokenId));
+      const imageUrl = `https://droupz.xyz/assets/${tokenId}.png`;
+
+      return `
+        <div class="nft-card">
+          <img src="${imageUrl}" alt="DROUPZ #${tokenId}" onerror="this.style.visibility='hidden'">
+          <div class="nft-body">
+            <div class="nft-id">DROUPZ #${tokenId}</div>
+            ${
+              isStaked
+                ? `<button class="btn btn-dark" onclick="unstakeOne(${tokenId})">UNSTAKE</button>`
+                : `<button class="btn btn-primary" onclick="stakeOne(${tokenId})">STAKE</button>`
+            }
+          </div>
+        </div>`;
+    }).join("");
+  }
+
+  async function approveAndStake(tokenId) {
+    // DROUPZ stays in the user's wallet. The staking contract only records the stake.
+    const owner = await nft.ownerOf(tokenId);
+
+    if (owner.toLowerCase() !== userAddress.toLowerCase()) {
+      throw new Error("You no longer own this DROUPZ.");
+    }
+
+    showMessage(`Staking DROUPZ #${tokenId}...`);
+    const tx = await staking.stake([tokenId]);
+    await tx.wait();
+
+    showMessage(`DROUPZ #${tokenId} is now staked.`);
+    await refresh();
+  }
+
+  async function stakeOne(tokenId) {
+    try {
+      await approveAndStake(tokenId);
+    } catch (err) {
+      console.error(err);
+      showMessage(readableError(err));
+    }
+  }
+
+  async function unstakeOne(tokenId) {
+    try {
+      showMessage(`Unstaking DROUPZ #${tokenId}...`);
+      const tx = await staking.unstake([tokenId]);
+      await tx.wait();
+
+      showMessage(`DROUPZ #${tokenId} returned to your wallet.`);
+      await refresh();
+    } catch (err) {
+      console.error(err);
+      showMessage(readableError(err));
+    }
+  }
+
+  async function claimRewards() {
+    if (!staking || !userAddress) return;
+
+    try {
+      const reward = await staking.pendingRewards(userAddress);
+
+      if (reward === 0n) {
+        showMessage("You have no rewards to claim.");
+        return;
+      }
+
+      const claimBtn = $("claimBtn");
+      claimBtn.disabled = true;
+
+      // First transaction: settle the reward into storedClaimable.
+      showMessage("Confirm Claim in your wallet...");
+      const claimTx = await staking.claim();
+      await claimTx.wait();
+
+      // Second transaction: send the settled ETH to the connected wallet.
+      showMessage("Claim confirmed. Confirm the ETH withdrawal in your wallet...");
+      const withdrawTx = await staking.withdrawClaimable();
+      await withdrawTx.wait();
+
+      showMessage(`Claimed ${formatEth(reward)} successfully.`);
+      await refresh();
+    } catch (err) {
+      console.error(err);
+      showMessage(readableError(err));
+      await refresh();
+    }
+  }
+
+  function readableError(err) {
+    if (err?.code === 4001) return "Transaction rejected in wallet.";
+    if (err?.reason) return err.reason;
+    if (err?.shortMessage) return err.shortMessage;
+    if (err?.message) return err.message.slice(0, 240);
+    return "Transaction failed.";
+  }
+
+  $("connectBtn").addEventListener("click", connect);
+  $("heroConnectBtn").addEventListener("click", () => {
+    if (userAddress) document.querySelector("#staking").scrollIntoView();
+    else connect();
+  });
+  $("claimBtn").addEventListener("click", claimRewards);
+  $("refreshBtn").addEventListener("click", refresh);
+
+  if (window.ethereum) {
+    window.ethereum.on("accountsChanged", () => location.reload());
+    window.ethereum.on("chainChanged", () => location.reload());
+  }
+</script>
+</body>
+</html>
